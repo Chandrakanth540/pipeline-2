@@ -10,7 +10,19 @@ pipeline {
                     echo 'Build Tool: Maven'
                 }
             }
+             post {
+       success {
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline was successful', 
+               body: 'successfully lauched pipeline' 
+       } failure { 
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline Failure', 
+               body: 'The pipeline encountered an error.' 
+       } 
+   }
         }
+        
 
         stage('Unit and Integration Tests') {
             steps {
@@ -20,6 +32,17 @@ pipeline {
                     echo 'Test Tools: JUnit, Selenium'
                 }
             }
+             post {
+       success {
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline was successful', 
+               body: 'successfully lauched pipeline' 
+       } failure { 
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline Failure', 
+               body: 'The pipeline encountered an error.' 
+       } 
+   }
         }
 
         stage('Code Analysis') {
@@ -30,6 +53,17 @@ pipeline {
                     echo 'Code Analysis Tool: SonarQube'
                 }
             }
+             post {
+       success {
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline was successful', 
+               body: 'successfully lauched pipeline' 
+       } failure { 
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline Failure', 
+               body: 'The pipeline encountered an error.' 
+       } 
+   }
         }
 
         stage('Security Scan') {
@@ -40,6 +74,17 @@ pipeline {
                     echo 'Security Scan Tool: OWASP Dependency-Check'
                 }
             }
+             post {
+       success {
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline was successful', 
+               body: 'successfully lauched pipeline' 
+       } failure { 
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline Failure', 
+               body: 'The pipeline encountered an error.' 
+       } 
+   }
         }
 
         stage('Deploy to Staging') {
@@ -50,6 +95,17 @@ pipeline {
                     echo 'Deployment Environment: AWS EC2'
                 }
             }
+             post {
+       success {
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline was successful', 
+               body: 'successfully lauched pipeline' 
+       } failure { 
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline Failure', 
+               body: 'The pipeline encountered an error.' 
+       } 
+   }
         }
 
         stage('Integration Tests on Staging') {
@@ -60,6 +116,17 @@ pipeline {
                     echo 'Test Tools: Selenium'
                 }
             }
+             post {
+       success {
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline was successful', 
+               body: 'successfully lauched pipeline' 
+       } failure { 
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline Failure', 
+               body: 'The pipeline encountered an error.' 
+       } 
+   }
         }
 
         stage('Deploy to Production') {
@@ -70,19 +137,19 @@ pipeline {
                     echo 'Deployment Environment: AWS EC2'
                 }
             }
+             post {
+       success {
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline was successful', 
+               body: 'successfully lauched pipeline' 
+       } failure { 
+           mail to: 'kchandrakanth540@gmail.com', 
+               subject: 'Pipeline Failure', 
+               body: 'The pipeline encountered an error.' 
+       } 
+   }
         }
     }
 
-    post {
-        always {
-            emailext(
-                to: 'kchandrakanth540@gmail.com',
-                subject: "Pipeline Execution Result: ${currentBuild.currentResult}",
-                body: "Pipeline execution ${currentBuild.currentResult}. Check the attached logs for more details.",
-                attachLog: true,
-                compressLog: true,
-                recipientProviders: [[$class: 'DevelopersRecipientProvider']]
-            )
-        }
-    }
+   
 }
