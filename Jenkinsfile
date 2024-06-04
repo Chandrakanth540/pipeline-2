@@ -13,12 +13,12 @@ pipeline {
       post {
         success {
           mail to: 'kchandrakanth540@gmail.com', 
-          subject: 'Build Successful'
+          subject: 'Build Successful',
           body: 'The application build completed successfully.'
         }
         failure {
           mail to: 'kchandrakanth540@gmail.com', 
-          subject: 'Build Failed'
+          subject: 'Build Failed',
           body: 'The application build encountered an error. Please review the Jenkins logs for details.'
         }
       }
@@ -33,12 +33,12 @@ pipeline {
       post {
         success {
           mail to: 'kchandrakanth540@gmail.com', 
-          subject: 'Tests Passed'
+          subject: 'Tests Passed',
           body: 'The application tests completed successfully.'
         }
         failure {
           mail to: 'kchandrakanth540@gmail.com',  
-          subject: 'Tests Failed'
+          subject: 'Tests Failed',
           body: 'The application tests encountered an error. Please review the Jenkins logs for details.'
         }
       }
@@ -53,12 +53,12 @@ pipeline {
       post {
         success {
           mail to: 'kchandrakanth540@gmail.com', 
-          subject: 'Code Analysis Successful'
+          subject: 'Code Analysis Successful',
           body: 'The code analysis completed successfully.'
         }
         failure {
           mail to: 'kchandrakanth540@gmail.com',  
-          subject: 'Code Analysis Failed'
+          subject: 'Code Analysis Failed',
           body: 'The code analysis encountered an error. Please review the Jenkins logs for details.'
         }
       }
@@ -72,13 +72,13 @@ pipeline {
       post {
         success {
           mail to: 'kchandrakanth540@gmail.com', 
-          subject: 'Security Scan Successful'
+          subject: 'Security Scan Successful',
           body: 'The security scan completed successfully.'
         }
         failure {
           mail to: 'kchandrakanth540@gmail.com',  
-          subject: 'Security Scan Failed'
-          functional  'The security scan encountered an error. Please review the Jenkins logs for details.'
+          subject: 'Security Scan Failed',
+          body:  'The security scan encountered an error. Please review the Jenkins logs for details.'
         }
       }
     }
@@ -88,6 +88,18 @@ pipeline {
         echo 'Deploying application to staging...'
       
       }
+      post {
+        success {
+          mail to: 'kchandrakanth540@gmail.com', 
+          subject: 'Security Scan Successful',
+          body: 'The security scan completed successfully.'
+        }
+        failure {
+          mail to: 'kchandrakanth540@gmail.com',  
+          subject: 'Security Scan Failed',
+          body:  'The security scan encountered an error. Please review the Jenkins logs for details.'
+        }
+      }
     }
  
     stage('Integration Tests on Staging') {
@@ -95,12 +107,36 @@ pipeline {
         echo 'Executing integration tests in staging environment...'
 
       }
+      post {
+        success {
+          mail to: 'kchandrakanth540@gmail.com', 
+          subject: 'Security Scan Successful',
+          body: 'The security scan completed successfully.'
+        }
+        failure {
+          mail to: 'kchandrakanth540@gmail.com',  
+          subject: 'Security Scan Failed',
+          body:  'The security scan encountered an error. Please review the Jenkins logs for details.'
+        }
+      }
     }
  
     stage('Deploy to Production Environment') {
       steps {
         echo 'Deploying application to production...'
 
+      }
+      post {
+        success {
+          mail to: 'kchandrakanth540@gmail.com', 
+          subject: 'Security Scan Successful',
+          body: 'The security scan completed successfully.'
+        }
+        failure {
+          mail to: 'kchandrakanth540@gmail.com',  
+          subject: 'Security Scan Failed',
+          body:  'The security scan encountered an error. Please review the Jenkins logs for details.'
+        }
       }
     }
   }
